@@ -65,6 +65,22 @@ public class BiodataRest
         return biodataService.getBiodataByNameDesc(theName);
     }
 
+    @GetMapping("/paging/asc")
+    public List<BiodataDto> findBiodataPagingAsc(@RequestParam("rpg") Integer rpg, @RequestParam("page") Integer page)
+    {
+        Integer x = (page*rpg) - rpg;
+
+        return biodataService.getBiodataPagingAsc(rpg, x);
+    }
+
+    @GetMapping("/paging/desc")
+    public List<BiodataDto> findBiodataPagingDesc(@RequestParam("rpg") Integer rpg, @RequestParam("page") Integer page)
+    {
+        Integer x = (page*rpg) - rpg;
+
+        return biodataService.getBiodataPagingDesc(rpg, x);
+    }
+
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public BiodataEntity postBiodata(@RequestBody BiodataEntity biodataEntity)

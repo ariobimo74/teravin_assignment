@@ -56,6 +56,16 @@ public class BiodataService
         return biodataRepository.getBiodataByNameDesc(theName);
     }
 
+    public List<BiodataDto> getBiodataPagingAsc(@Param("rpg") Integer rpg, @Param("page") Integer page)
+    {
+        return biodataRepository.getBiodataPagingAsc(rpg, page);
+    }
+
+    public List<BiodataDto> getBiodataPagingDesc(@Param("rpg") Integer rpg, @Param("page") Integer page)
+    {
+        return biodataRepository.getBiodataPagingDesc(rpg, page);
+    }
+
     public BiodataEntity saveBiodata(BiodataEntity biodataEntity)
     {
         return biodataRepository.save(biodataEntity);

@@ -27,4 +27,10 @@ public interface BiodataRepository extends JpaRepository<BiodataEntity, Integer>
 
     @Query(nativeQuery = true)
     List<BiodataDto> getBiodataByNameDesc(@Param("searchName") String theName);
+
+    @Query(nativeQuery = true)
+    List<BiodataDto> getBiodataPagingAsc(@Param("rpg") Integer rpg, @Param("page") Integer page);
+
+    @Query(nativeQuery = true)
+    List<BiodataDto> getBiodataPagingDesc(@Param("rpg") Integer rpg, @Param("page") Integer page);
 }

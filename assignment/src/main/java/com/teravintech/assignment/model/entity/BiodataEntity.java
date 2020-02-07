@@ -16,11 +16,11 @@ query = "SELECT biodata.id, biodata.name, biodata.email\n " +
 
 @NamedNativeQuery(name = "BiodataEntity.getAllBiodataAsc", resultSetMapping = "biodataMapping",
 query = "SELECT biodata.id, biodata.name, biodata.email\n " +
-        "FROM biodata ORDER BY biodata.name ASC")
+        "FROM biodata ORDER BY biodata.id ASC")
 
 @NamedNativeQuery(name = "BiodataEntity.getAllBiodataDesc", resultSetMapping = "biodataMapping",
 query = "SELECT biodata.id, biodata.name, biodata.email\n" +
-        "FROM biodata ORDER BY biodata.name DESC")
+        "FROM biodata ORDER BY biodata.id DESC")
 
 @NamedNativeQuery(name = "BiodataEntity.getBiodataByName", resultSetMapping = "biodataMapping",
 query = "SELECT biodata.id, biodata.name, biodata.email\n" +
@@ -37,6 +37,14 @@ query = "SELECT biodata.id, biodata.name, biodata.email\n" +
         "FROM biodata\n" +
         "WHERE LOWER(biodata.name) LIKE LOWER(CONCAT('%',:searchName,'%'))\n" +
         "ORDER BY biodata.name DESC")
+
+@NamedNativeQuery(name = "BiodataEntity.getBiodataPagingAsc", resultSetMapping = "biodataMapping",
+query = "SELECT biodata.id, biodata.name, biodata.email\n " +
+        "FROM biodata ORDER BY biodata.id ASC LIMIT :rpg OFFSET :page")
+
+@NamedNativeQuery(name = "BiodataEntity.getBiodataPagingDesc", resultSetMapping = "biodataMapping",
+query = "SELECT biodata.id, biodata.name, biodata.email\n " +
+        "FROM biodata ORDER BY biodata.id DESC LIMIT :rpg OFFSET :page")
 
 @Entity
 @Table(name = "biodata")
