@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:with="http://www.thymeleaf.org/extras/with"
+        layout:decorate="~{layout}"
+        with:title="'B210'">
+<th:block layout:fragment="content">
+    <body>
+        <div class="bottom">
+            <div class="col">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-block">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td align="center" style="font-size:15px;"><b>Nama</b></td>
+                                        <td align="center" style="font-size:15px;"><b>Email</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbBio">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Content will be loaded here...  -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="saveBtn" class="btn btn-primary">ADD</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</th:block>
+<th:block layout:fragment="Biodata">
+    <script>
+
+        function loadBiodata() {
+            $(() => {
+                console.log("fetch");
+                loadData2();
+            });
+
+            loadData2 = () => {
+                console.log("test biodata");
+                $.ajax({
+                    url: 'rest/biodata',
+                    type: 'get',
+                    contentType: 'application/json',
+                    success: (res) => {
+                        $('#tbBio').html("");
+                        res.map((data) => {
+                            var markup = "<tr><td class='text-center'>" + data.name + "</td><td class='text-center'>" + data.email + "</td></tr>"
+                            $('#tbBio').append(markup)
+                        })
+                    },
+                    error: () => {
+                        console.log('fetch data failed in biodata')
+                    }
+                })
+            }
+        }
+    </script>
+</th:block>
+</html>
